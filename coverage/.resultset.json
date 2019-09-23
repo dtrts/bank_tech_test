@@ -1,0 +1,22 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/hello_world_spec.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/potato/code/makers/repos/bank_tech_test/lib/hello_world.rb": [
+        1,
+        1,
+        1,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1569235222
+  }
+}
