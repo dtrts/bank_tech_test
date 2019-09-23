@@ -19,18 +19,17 @@ class Account
   end
 
   def statement
-    print_statement = statement_header
     balance = 0
-
+    print_statement = ''
     @transactions.each do |transaction|
       balance += transaction[:amount]
-      print_statement << statement_date(transaction)
-      print_statement << statement_credit_debit(transaction)
-      print_statement << '%.2f' % balance
-      print_statement << "\n"
+      print_statement =  "\n" + print_statement
+      print_statement =  '%.2f' % balance + print_statement
+      print_statement =  statement_credit_debit(transaction) + print_statement
+      print_statement =  statement_date(transaction) + print_statement
     end
 
-    print_statement
+    print_statement = statement_header + print_statement
   end
 
   private
@@ -45,9 +44,9 @@ class Account
 
   def statement_credit_debit(transaction)
     if transaction[:amount].positive?
-      ' || ' + format('%.2f', transaction[:amount]) + ' || '
+      ' ' + format('%.2f', transaction[:amount]) + ' || || '
     else
-      ' ' + format('%.2f', (-1 * transaction[:amount])) + ' || || '
+      ' || ' + format('%.2f', -1 * transaction[:amount]) + ' || '
     end
   end
 
