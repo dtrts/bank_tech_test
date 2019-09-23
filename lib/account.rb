@@ -52,10 +52,10 @@ class Account
   end
 
   def guard_fractional(amount)
-    raise ERR_FRACTIONAL if (amount * 100) % 1 > 0
+    raise ERR_FRACTIONAL if fractional?(amount)
   end
 
-  def has_fractional?(amount)
+  def fractional?(amount)
     ((amount * 100) % 1).nonzero?
   end
 
