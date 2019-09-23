@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/potato/code/makers/repos/bank_tech_test/spec/hello_world_spec.rb": [
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/account_spec.rb": [
         1,
         1,
         1,
@@ -9,7 +9,7 @@
         null,
         null
       ],
-      "/Users/potato/code/makers/repos/bank_tech_test/lib/hello_world.rb": [
+      "/Users/potato/code/makers/repos/bank_tech_test/lib/account.rb": [
         1,
         1,
         1,
@@ -17,6 +17,6 @@
         null
       ]
     },
-    "timestamp": 1569235222
+    "timestamp": 1569243863
   }
 }
