@@ -1,15 +1,20 @@
 class Account
   ERR_FRACTIONAL = 'Unable to process fractional pence'.freeze
+  ERR_NAN = 'A valid number or float must be provided'.freeze
 
   def initialize
     @transactions = []
   end
 
   def deposit(amount)
+    guard_type(amount)
+    guard_fractional(amount)
     @transactions << { amount: amount, datetime: Time.now }
   end
 
   def withdraw(amount)
+    guard_type(amount)
+    guard_fractional(amount)
     @transactions << { amount: -amount, datetime: Time.now }
   end
 
@@ -39,10 +44,22 @@ class Account
   end
 
   def statement_credit_debit(transaction)
-    if transaction[:amount] > 0
+    if transaction[:amount].positive?
       ' || ' + format('%.2f', transaction[:amount]) + ' || '
     else
       ' ' + format('%.2f', (-1 * transaction[:amount])) + ' || || '
     end
+  end
+
+  def guard_fractional(amount)
+    raise ERR_FRACTIONAL if (amount * 100) % 1 > 0
+  end
+
+  def has_fractional?(amount)
+    ((amount * 100) % 1).nonzero?
+  end
+
+  def guard_type(amount)
+    raise ERR_NAN unless amount.is_a?(Numeric)
   end
 end

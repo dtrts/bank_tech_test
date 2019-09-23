@@ -18,11 +18,17 @@ describe Account do
   end
 
   describe 'value checking for deposit and withdrawal' do
-    xit 'throws error on fractional pence - deposit' do
-      expect { subject.deposit(0.001) }.to throw_error(Account::ERR_FRACTIONAL)
+    it 'throws error on fractional pence - deposit' do
+      expect { subject.deposit(0.001) }.to raise_error(Account::ERR_FRACTIONAL)
     end
-    xit 'throws error on fractional pence - withdraw' do
-      expect { subject.withdraw(0.001) }.to throw_error(Account::ERR_FRACTIONAL)
+    it 'throws error on fractional pence - withdraw' do
+      expect { subject.withdraw(0.001) }.to raise_error(Account::ERR_FRACTIONAL)
+    end
+    it 'throws error on invalid number types - deposit' do
+      expect { subject.deposit('a string') }.to raise_error(Account::ERR_NAN)
+    end
+    it 'throws error on invalid number types - withdraw' do
+      expect { subject.withdraw(' a string') }.to raise_error(Account::ERR_NAN)
     end
   end
 end
