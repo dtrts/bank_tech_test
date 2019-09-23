@@ -1,36 +1,48 @@
 class Account
+  ERR_FRACTIONAL = 'Unable to process fractional pence'.freeze
+
   def initialize
     @transactions = []
   end
 
   def deposit(amount)
-    @transactions << [amount, Time.now]
+    @transactions << { amount: amount, datetime: Time.now }
   end
 
   def withdraw(amount)
-    @transactions << [-amount, Time.now]
+    @transactions << { amount: -amount, datetime: Time.now }
   end
 
   def statement
-    print_statement = "date || credit || debit || balance\n"
+    print_statement = statement_header
+    balance = 0
 
     @transactions.each do |transaction|
-      print_statement << transaction[1].strftime('%d/%m/%Y')
-      if transaction[0] > 0
-        print_statement << ' || || '
-        print_statement << '%.2f' % transaction[0]
-        print_statement << ' || '
-        print_statement << '%.2f' % transaction[0]
-
-      else
-        print_statement << ' || '
-        print_statement << format('%.2f', (-1 * transaction[0]))
-        print_statement << ' || || '
-        print_statement << '%.2f' % transaction[0]
-    end
-
+      balance += transaction[:amount]
+      print_statement << statement_date(transaction)
+      print_statement << statement_credit_debit(transaction)
+      print_statement << '%.2f' % balance
       print_statement << "\n"
     end
+
     print_statement
+  end
+
+  private
+
+  def statement_header
+    "date || credit || debit || balance\n"
+  end
+
+  def statement_date(transaction)
+    transaction[:datetime].strftime('%d/%m/%Y') + ' ||'
+  end
+
+  def statement_credit_debit(transaction)
+    if transaction[:amount] > 0
+      ' || ' + format('%.2f', transaction[:amount]) + ' || '
+    else
+      ' ' + format('%.2f', (-1 * transaction[:amount])) + ' || || '
+    end
   end
 end

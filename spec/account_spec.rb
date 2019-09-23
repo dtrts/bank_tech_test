@@ -16,4 +16,13 @@ describe Account do
     subject.withdraw(100)
     expect(subject.statement).to eq(header + "15/02/1990 || 100.00 || || -100.00\n")
   end
+
+  describe 'value checking for deposit and withdrawal' do
+    xit 'throws error on fractional pence - deposit' do
+      expect { subject.deposit(0.001) }.to throw_error(Account::ERR_FRACTIONAL)
+    end
+    xit 'throws error on fractional pence - withdraw' do
+      expect { subject.withdraw(0.001) }.to throw_error(Account::ERR_FRACTIONAL)
+    end
+  end
 end
