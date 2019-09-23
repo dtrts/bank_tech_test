@@ -58,6 +58,8 @@ Account class.
 Holds balance
 Can print a statement.
 Deposits and withdrawals can be made.
-Deposits and withdrawals will be supplied with a datetime.
+Deposits and withdrawals.
+
+
 
 

@@ -1,3 +1,4 @@
+# Account
 class Account
   ERR_FRACTIONAL = 'Unable to process fractional pence'.freeze
   ERR_NAN = 'A valid number or float must be provided'.freeze
@@ -9,12 +10,14 @@ class Account
   def deposit(amount)
     guard_type(amount)
     guard_fractional(amount)
+
     @transactions << { amount: amount, datetime: Time.now }
   end
 
   def withdraw(amount)
     guard_type(amount)
     guard_fractional(amount)
+
     @transactions << { amount: -amount, datetime: Time.now }
   end
 
@@ -24,7 +27,7 @@ class Account
     @transactions.each do |transaction|
       balance += transaction[:amount]
       print_statement =  "\n" + print_statement
-      print_statement =  '%.2f' % balance + print_statement
+      print_statement =  format('%.2f', balance) + print_statement
       print_statement =  statement_credit_debit(transaction) + print_statement
       print_statement =  statement_date(transaction) + print_statement
     end
