@@ -9,6 +9,16 @@ class Transaction
     @datetime = Time.now
   end
 
+  def amount
+    @amount.dup
+  end
+
+  def datetime
+    @datetime.dup
+  end
+
+  private
+
   def guard_fractional(amount)
     raise ERR_FRACTIONAL if fractional?(amount)
   end
