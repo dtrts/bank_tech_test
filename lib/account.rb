@@ -11,14 +11,14 @@ class Account
     guard_type(amount)
     guard_fractional(amount)
 
-    @transactions << { amount: amount, datetime: Time.now }
+    @transactions.push(amount: amount, datetime: Time.now).last
   end
 
   def withdraw(amount)
     guard_type(amount)
     guard_fractional(amount)
 
-    @transactions << { amount: -amount, datetime: Time.now }
+    @transactions.push(amount: -amount, datetime: Time.now).last
   end
 
   def statement
