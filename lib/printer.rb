@@ -1,3 +1,4 @@
+# Printer
 class Printer
   HEADER = "date || credit || debit || balance\n".freeze
 
@@ -19,15 +20,14 @@ class Printer
   end
 
   def print_transaction(transaction, balance)
-    line = ''
-    line += format_transaction_datetime(transaction)
+    line = format_transaction_datetime(transaction)
     line += '||'
     line += format_transaction_deposit(transaction)
     line += '||'
     line += format_transaction_withdrawal(transaction)
     line += '||'
     line += format_balance(balance)
-    line += "\n"
+    line + "\n"
   end
 
   def format_transaction_datetime(transaction)

@@ -1,3 +1,4 @@
+# Transaction
 class Transaction
   ERR_FRACTIONAL = 'Unable to process fractional pence'.freeze
   ERR_NAN = 'A valid number or float must be provided'.freeze

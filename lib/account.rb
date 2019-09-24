@@ -1,9 +1,9 @@
-# Account
 require_relative './transaction.rb'
 require_relative './printer.rb'
 
+# Account
 class Account
-  def initialize(transaction_class = Transaction,printer_class = Printer)
+  def initialize(transaction_class = Transaction, printer_class = Printer)
     @transaction_class = transaction_class
     @printer = printer_class.new
     @transactions = []
