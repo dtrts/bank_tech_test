@@ -1,16 +1,28 @@
 require 'transaction.rb'
 
 describe 'Transaction' do
-  it 'exposes the amount' do
-    amount = (rand * 1000).round(2)
-    transaction = Transaction.new(amount)
-    expect(transaction.amount).to eq(amount)
+  describe '#amount' do
+    it 'exposes the value' do
+      100.times do
+        amount = (rand * 1000).round(2)
+        transaction = Transaction.new(amount)
+        expect(transaction.amount).to eq(amount)
+      end
+    end
+    it 'deals with 79.29' do
+      # 79.29 * 100 returns a long float which failed the fractional pence check
+      transaction = Transaction.new(79.29)
+      expect(transaction.amount).to eq(79.29)
+    end
   end
-  it 'exposes the date created' do
-    test_time = Time.new(1990, 2, 15, 0, 0, 0)
-    allow(Time).to receive(:now).and_return(test_time)
-    transaction = Transaction.new(100)
-    expect(transaction.datetime).to eq(test_time)
+
+  describe '#datetime' do
+    it 'exposes the value' do
+      test_time = Time.new(1990, 2, 15, 0, 0, 0)
+      allow(Time).to receive(:now).and_return(test_time)
+      transaction = Transaction.new(100)
+      expect(transaction.datetime).to eq(test_time)
+    end
   end
 
   describe 'value checking for deposit and withdrawal' do
