@@ -62,7 +62,7 @@ Deposits and withdrawals.
 
 
 ## Improvements
-Class extraction.
+### Class extraction.
 Bring out transaction class.
 The transaction class will hold: amount, datetime
 The transaction shouldn't be alterable.
@@ -80,3 +80,4 @@ amount += 10
 amount != tr.amount # => true
 ```
 
+### Class Extraction
