@@ -1,11 +1,14 @@
 # Bank Tech Test
 
 This is a tech test for a simple OO app to manage a bank account.
+The main app has no dependencies.
+Gems will have to be installed to run the tests.
+
 Tech Stack:
 - Ruby/IRB for the implementation.
 - Rspec for the Tests.
 - Git for version control
-
+- Rubocop for linting locally
 
 ## Getting Started
 `git clone https://github.com/dtrts/bank_tech_test`
@@ -52,7 +55,12 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
-## Design
+## Design / Approach
+
+My approach was to initially build upon some feature tests which encompassed the requirements.
+Upon passing all of the feature tests I think looked to extract classes and reduce the responsibility of the single class I had made.
+
+
 
 Account class.
 Holds balance
@@ -62,6 +70,7 @@ Deposits and withdrawals.
 
 
 ## Improvements
+
 ### Class extraction.
 Bring out transaction class.
 The transaction class will hold: amount, datetime
@@ -81,3 +90,4 @@ amount != tr.amount # => true
 ```
 
 ### Class Extraction
+Removing a printer class to prepare statements
