@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/potato/code/makers/repos/bank_tech_test/spec/account_basic_spec.rb": [
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/account/account_basic_spec.rb": [
         1,
         1,
         1,
@@ -116,7 +116,7 @@
         null,
         null
       ],
-      "/Users/potato/code/makers/repos/bank_tech_test/spec/account_feature_spec.rb": [
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/account/account_feature_spec.rb": [
         1,
         null,
         1,
@@ -138,7 +138,7 @@
         null,
         null
       ],
-      "/Users/potato/code/makers/repos/bank_tech_test/spec/account_medium_spec.rb": [
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/account/account_medium_spec.rb": [
         1,
         null,
         1,
@@ -181,8 +181,54 @@
         null,
         null,
         null
+      ],
+      "/Users/potato/code/makers/repos/bank_tech_test/spec/transaction/transaction_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        2,
+        null,
+        1,
+        2,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null
+      ],
+      "/Users/potato/code/makers/repos/bank_tech_test/lib/transaction.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        4,
+        2,
+        0,
+        0,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null
       ]
     },
-    "timestamp": 1569334505
+    "timestamp": 1569337115
   }
 }

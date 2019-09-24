@@ -61,5 +61,22 @@ Deposits and withdrawals can be made.
 Deposits and withdrawals.
 
 
+## Improvements
+Class extraction.
+Bring out transaction class.
+The transaction class will hold: amount, datetime
+The transaction shouldn't be alterable.
+Will return a dup
 
+Will manage guarding for fractional amounts and types.
+```
+tr = Transaction.new(amount)
+tr.credit?
+tr.debit?
+tr.amount
+tr.datetime
+amount = tr.amount
+amount += 10
+amount != tr.amount # => true
+```
 
