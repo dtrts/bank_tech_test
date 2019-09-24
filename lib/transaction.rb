@@ -10,6 +10,14 @@ class Transaction
     @datetime = Time.now
   end
 
+  def deposit?
+    @amount.positive?
+  end
+
+  def withdrawal?
+    !deposit?
+  end
+
   private
 
   def guard_amount(amount)

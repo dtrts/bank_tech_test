@@ -25,6 +25,25 @@ describe 'Transaction' do
     end
   end
 
+  describe '#deposit?' do
+    it 'positive amounts are a deposit' do
+      100.times do
+        amount = (rand * 1000).round(2)
+        transaction = Transaction.new(amount)
+        expect(transaction.deposit?).to eq(true)
+      end
+    end
+  end
+  describe '#withdrawal?' do
+    it 'negative amounts are a deposit' do
+      100.times do
+        amount = -1 * (rand * 1000).round(2)
+        transaction = Transaction.new(amount)
+        expect(transaction.withdrawal?).to eq(true)
+      end
+    end
+  end
+
   describe 'value checking for deposit and withdrawal' do
     it 'throws error on fractional pence - deposit' do
       expect { Transaction.new(0.001) }.to raise_error(Transaction::ERR_FRACTIONAL)
