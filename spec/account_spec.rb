@@ -31,12 +31,23 @@ describe Account do
     it 'returns the current log' do
       expect(subject.deposit(100)).to eq([transaction])
     end
+
+    it 'it prevents negative balance' do
+      10.times do
+        amount = (rand * 1000).round(2)
+        allow(transaction).to receive(:amount).and_return(-1 * amount)
+        expect { subject.withdraw(amount) }.to raise_error(Account::ERR_NEGATIVE_BALANCE)
+      end
+    end
   end
 
   context 'after multiple transactions' do
     it 'returns a transaction log with 3x transactions after 3rd transaction' do
       subject.deposit(100)
+
+      allow(transaction).to receive(:amount).and_return(+1 * 100, -1 * 100)
       subject.withdraw(100)
+
       expect(subject.deposit(100)).to eq([transaction, transaction, transaction])
     end
   end
@@ -48,16 +59,13 @@ describe Account do
       subject.statement
     end
 
-    it 'calls the printer with an array with single transaction - withdraw' do
-      expect(printer).to receive(:statement).with([transaction])
-      subject.withdraw(100)
-      subject.statement
-    end
-
     it 'calls the printer with an array of transactions, x2' do
       expect(printer).to receive(:statement).with([transaction, transaction])
       subject.deposit(100)
+
+      allow(transaction).to receive(:amount).and_return(+1 * 100, -1 * 100)
       subject.withdraw(100)
+
       subject.statement
     end
   end
