@@ -18,7 +18,7 @@ class Account
   end
 
   def withdraw(amount)
-    raise ERR_NEGATIVE_BALANCE if amount > current_balance
+    raise ERR_NEGATIVE_BALANCE if insufficient_funds?(amount)
 
     @transactions.push(@transaction_class.new(-amount)).dup
   end
@@ -28,6 +28,10 @@ class Account
   end
 
   private
+
+  def insufficient_funds?(amount)
+    amount > current_balance
+  end
 
   def current_balance
     @transactions.reduce(0.0) do |balance, transaction|
