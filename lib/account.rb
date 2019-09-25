@@ -6,6 +6,9 @@ require_relative './printer.rb'
 # Account
 class Account
   ERR_NEGATIVE_BALANCE = 'Insufficient funds'
+  # rubocop:disable Metrics/LineLength
+  ERR_NON_POSITIVE_TRANSACTION = 'Cannot process a transaction with non positive value'
+  # rubocop:enable Metrics/LineLength
 
   def initialize(transaction_class = Transaction, printer_class = Printer)
     @transaction_class = transaction_class
@@ -14,11 +17,14 @@ class Account
   end
 
   def deposit(amount)
+    raise ERR_NON_POSITIVE_TRANSACTION if amount <= 0
+
     @transactions.push(@transaction_class.new(amount)).dup
   end
 
   def withdraw(amount)
     raise ERR_NEGATIVE_BALANCE if insufficient_funds?(amount)
+    raise ERR_NON_POSITIVE_TRANSACTION if amount <= 0
 
     @transactions.push(@transaction_class.new(-amount)).dup
   end

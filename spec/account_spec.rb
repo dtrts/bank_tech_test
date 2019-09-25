@@ -19,13 +19,30 @@ describe Account do
     it 'returns the current log' do
       expect(subject.deposit(100)).to eq([transaction])
     end
+
+    it 'prevents a 0 transaction' do
+      expect { subject.deposit(0) }.to raise_error(Account::ERR_NON_POSITIVE_TRANSACTION)
+    end
+
+    it 'prevents a 0.0 transaction' do
+      expect { subject.deposit(0.0) }.to raise_error(Account::ERR_NON_POSITIVE_TRANSACTION)
+    end
+
+    it 'prevents a negative transaction' do
+      20.times do
+        amount = (rand * 1000).round(2) * -1
+        expect { subject.deposit(amount) }.to raise_error(Account::ERR_NON_POSITIVE_TRANSACTION)
+      end
+    end
   end
 
   describe '#withdraw' do
     it 'creates a new transaction' do
+      subject.deposit(10_000)
       amount = (rand * 1000).round(2)
-      expect(transaction_class).to receive(:new).with(amount)
-      subject.withdraw(-1 * amount)
+      expect(transaction_class).to receive(:new).with(-amount)
+      allow(transaction).to receive(:amount).and_return(10_000)
+      subject.withdraw(amount)
     end
 
     it 'returns the current log' do
@@ -38,6 +55,14 @@ describe Account do
         allow(transaction).to receive(:amount).and_return(-1 * amount)
         expect { subject.withdraw(amount) }.to raise_error(Account::ERR_NEGATIVE_BALANCE)
       end
+    end
+
+    it 'prevents a 0 transaction' do
+      expect { subject.withdraw(0) }.to raise_error(Account::ERR_NON_POSITIVE_TRANSACTION)
+    end
+
+    it 'prevents a 0.0 transaction' do
+      expect { subject.withdraw(0.0) }.to raise_error(Account::ERR_NON_POSITIVE_TRANSACTION)
     end
   end
 
