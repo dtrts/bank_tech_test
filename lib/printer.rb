@@ -1,6 +1,8 @@
 # Printer
 class Printer
   HEADER = "date || credit || debit || balance\n".freeze
+  COLUMN_CHAR = '||'.freeze
+  PADDING = ' '.freeze
 
   def statement(transactions)
     print(HEADER + printed_transactions(transactions))
@@ -22,36 +24,36 @@ class Printer
 
   def print_transaction(transaction, balance)
     line = format_transaction_datetime(transaction)
-    line += '||'
+    line += COLUMN_CHAR
     line += format_transaction_deposit(transaction)
-    line += '||'
+    line += COLUMN_CHAR
     line += format_transaction_withdrawal(transaction)
-    line += '||'
+    line += COLUMN_CHAR
     line += format_balance(balance)
     line + "\n"
   end
 
   def format_transaction_datetime(transaction)
-    transaction.datetime.strftime('%d/%m/%Y') + ' '
+    transaction.datetime.strftime('%d/%m/%Y') + PADDING
   end
 
   def format_transaction_deposit(transaction)
     if transaction.deposit?
-      ' ' + format('%.2f', transaction.amount) + ' '
+      PADDING + format('%.2f', transaction.amount) + PADDING
     else
-      ' '
+      PADDING
     end
   end
 
   def format_transaction_withdrawal(transaction)
     if transaction.withdrawal?
-      ' ' + format('%.2f', -1 * transaction.amount) + ' '
+      PADDING + format('%.2f', -1 * transaction.amount) + PADDING
     else
-      ' '
+      PADDING
     end
   end
 
   def format_balance(balance)
-    ' ' + format('%.2f', balance)
+    PADDING + format('%.2f', balance)
   end
 end
