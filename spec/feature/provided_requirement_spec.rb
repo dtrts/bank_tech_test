@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'account.rb'
 
 Time_Now_21 = Time.new(2012, 1, 10, 0, 0, 0)
@@ -12,9 +14,9 @@ describe Account do
     subject.withdraw(500)
 
     expected_statement =  "date || credit || debit || balance\n"
-    expected_statement << "14/01/2012 || || 500.00 || 2500.00\n"
-    expected_statement << "13/01/2012 || 2000.00 || || 3000.00\n"
-    expected_statement << "10/01/2012 || 1000.00 || || 1000.00\n"
+    expected_statement += "14/01/2012 || || 500.00 || 2500.00\n"
+    expected_statement += "13/01/2012 || 2000.00 || || 3000.00\n"
+    expected_statement += "10/01/2012 || 1000.00 || || 1000.00\n"
 
     expect(subject.statement).to eq(expected_statement)
   end

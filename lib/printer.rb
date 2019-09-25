@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 # Printer
 class Printer
-  HEADER = "date || credit || debit || balance\n".freeze
-  COLUMN_CHAR = '||'.freeze
-  PADDING = ' '.freeze
+  HEADER = "date || credit || debit || balance\n"
+  COLUMN_CHAR = '||'
+  PADDING = ' '
 
   def statement(transactions)
     print(HEADER + printed_transactions(transactions))

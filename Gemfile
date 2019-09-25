@@ -13,3 +13,5 @@ gem 'rspec', '~> 3.8', groups: %i[test development]
 gem 'simplecov', '~> 0.17.1', groups: %i[test development]
 
 gem 'simplecov-console', '~> 0.5.0', groups: %i[test development]
+
+gem "rubocop", "~> 0.74.0", :groups => [:test, :development]

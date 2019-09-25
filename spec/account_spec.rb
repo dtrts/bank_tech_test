@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'account'
 
 describe Account do
@@ -35,10 +37,9 @@ describe Account do
     it 'returns a transaction log with 3x transactions after 3rd transaction' do
       subject.deposit(100)
       subject.withdraw(100)
-      expect(subject.deposit(100)).to eq([transaction,transaction,transaction])
+      expect(subject.deposit(100)).to eq([transaction, transaction, transaction])
     end
   end
-
 
   describe '#statement' do
     it 'calls the printer with an array with single transaction - deposit' do

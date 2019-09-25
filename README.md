@@ -8,7 +8,7 @@ Tech Stack:
 - Ruby/IRB for the implementation.
 - Rspec for the Tests.
 - Git for version control
-- Rubocop for linting locally
+- Rubocop for linting
 
 ## Getting Started
 `git clone https://github.com/dtrts/bank_tech_test`
@@ -23,10 +23,11 @@ account.withdraw(5)
 account.statement
 ```
 
-## Running Tests
+## Running Tests and Linting
 ```
 bundle install
 rspec
+rubocop
 ```
 
 ---
