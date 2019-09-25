@@ -10,11 +10,11 @@ class Account
   end
 
   def deposit(amount)
-    @transactions << @transaction_class.new(amount)
+    @transactions.push(@transaction_class.new(amount)).dup
   end
 
   def withdraw(amount)
-    @transactions << @transaction_class.new(-amount)
+    @transactions.push(@transaction_class.new(-amount)).dup
   end
 
   def statement

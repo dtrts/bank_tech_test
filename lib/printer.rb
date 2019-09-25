@@ -3,6 +3,7 @@ class Printer
   HEADER = "date || credit || debit || balance\n".freeze
 
   def statement(transactions)
+    print(HEADER + printed_transactions(transactions))
     HEADER + printed_transactions(transactions)
   end
 
